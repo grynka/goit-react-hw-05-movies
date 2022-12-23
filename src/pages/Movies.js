@@ -1,15 +1,13 @@
 import {
-  Searchbars,
   SearchForm,
   Button,
   Label,
   Input,
 } from './Searchbar.styled';
 
-export const Moovies = () => {
+export const Movies = () => {
   return (
     <main>
-  <Searchbars>
         <SearchForm>
           <Button type="submit" className="button">
             <Label>Search</Label>
@@ -24,7 +22,6 @@ export const Moovies = () => {
             name="search"
           />
         </SearchForm>
-      </Searchbars>
     </main>
   );
 };
