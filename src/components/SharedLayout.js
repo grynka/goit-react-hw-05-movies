@@ -1,5 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { Container, Header, Logo, Link } from "./SharedLayout.styled";
+import { GiFilmStrip } from 'react-icons/gi';
+
 
 export const SharedLayout = () => {
   return (
@@ -7,16 +9,14 @@ export const SharedLayout = () => {
       <Header>
         <Logo>
           <span role="img" aria-label="computer icon">
-            💻
+          <GiFilmStrip />
           </span>{" "}
-          GoMerch Store
-        </Logo>
+Moovie        </Logo>
         <nav>
           <Link to="/" end>
             Home
           </Link>
-          <Link to="/about">About</Link>
-          <Link to="/products">Products</Link>
+          <Link to="/Movies">About</Link>
         </nav>
       </Header>
       <Outlet />
