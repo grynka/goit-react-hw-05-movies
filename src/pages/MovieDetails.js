@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link, Outlet } from 'react-router-dom';
 import { loadMovies } from 'service/API';
 import { useState, useEffect } from 'react';
 import { Detail, Image } from './MovieDetail.styled';
@@ -23,7 +23,7 @@ export const MovieDetails = () => {
 
   const { poster_path, title, release_date, vote_average, overview, genres } =
     movieDetails;
-  const imgUrl = poster_path ? `${IMAGE_BASE_URL}/${poster_path}` : 'noPoster';
+  const imgUrl = poster_path ? `${IMAGE_BASE_URL}/${poster_path}` : "noPoster";
   const releaseDate = release_date.slice(0, 4);
   const voteAverage = Math.floor(vote_average * 10);
   const genresStr = genres.map(genre => genre.name).join(', ');
@@ -42,7 +42,11 @@ export const MovieDetails = () => {
           <h3>Genres</h3>
           <p>{genresStr}</p>
         </div>
-      </Detail>
+        </Detail>
+        <p>Additional information</p>
+        <Link key={`c${id}`} to={`/movies/${id}/cast`}>Cast</Link>
+        <Link key={`r${id}`} to={`/movies/${id}/reviews`}>Review</Link>
+        <Outlet />
     </main>
   );
 };

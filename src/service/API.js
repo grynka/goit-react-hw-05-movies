@@ -9,17 +9,24 @@ const KEY = '2f44dbe234f7609a16da7327d83f3eb3';
 
 export async function loadMovies(URL, param) {
   let url;
-  if (URL === "search") {
+  if (URL === 'search') {
     url = SEARCH_FILMS_URL;
-    const response = await axios.get(`${url}?api_key=${KEY}&query=${param}`)
+    const response = await axios.get(`${url}?api_key=${KEY}&query=${param}`);
+    return response.data.results;
+  } else if (URL === 'card') {
+    url = CARD_MOVIE;
+    const response = await axios.get(`${url}${param}?api_key=${KEY}`);
+    return response.data;
+  } else if (URL === 'cast') {
+    url = CARD_MOVIE;
+    const response = await axios.get(`${url}${param}/credits?api_key=${KEY}`);
+    return response.data.cast;
+  } else if (URL === 'reviews') {
+    url = CARD_MOVIE;
+    const response = await axios.get(`${url}${param}/reviews?api_key=${KEY}`);
+    return response.data.results;
+  } else {
+    const response = await axios.get(`${TRENDING_URL}?api_key=${KEY}`);
     return response.data.results;
   }
-  else if (URL === "card") {
-    url = CARD_MOVIE
-    const response = await axios.get(`${url}${param}?api_key=${KEY}`)
-    return response.data;
-  }
-  else 
-  {const response = await axios.get(`${TRENDING_URL}?api_key=${KEY}`)
-  return response.data.results}
 }

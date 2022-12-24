@@ -6,6 +6,8 @@ import { loadMovies } from 'service/API';
 import { MovieDetails } from 'pages/MovieDetails';
 import { Container, Header, Logo, Link } from './App.styled';
 import { GiFilmStrip } from 'react-icons/gi';
+import { Cast } from './Cast';
+import { Reviews } from './Reviews';
 
 export const App = () => {
   const [movies, setMovies] = useState([]);
@@ -41,7 +43,10 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<Home movies={movies} />} />
         <Route path="movies" element={<Movies/>} />
-        <Route path="/movies/:id" element={<MovieDetails />} />
+        <Route path="/movies/:id" element={<MovieDetails />} >
+          <Route path="cast" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} />
+        </Route>
       </Routes>
       </Container>
     </div>
