@@ -30,7 +30,7 @@ import SearchForm  from 'components/SearchForm/SearchForm';
 
   return (
     <>
-      <SearchForm onSubmit={onSubmit}/>
+      <SearchForm onSubmit={onSubmit} value={queryParam}/>
       <MovieList movies={movies} /> 
       </>
   );

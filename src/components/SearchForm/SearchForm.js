@@ -4,8 +4,8 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 
-const SearchForm = ({ onSubmit }) => {
-  const [query, setQuery] = useState('');
+const SearchForm = ({ onSubmit, value }) => {
+  const [query, setQuery] = useState(value);
   return (
     <SearchForms onSubmit={onSubmit}>
       <Input
@@ -25,6 +25,7 @@ const SearchForm = ({ onSubmit }) => {
 
 SearchForm.propTypes = {
     onSubmit: PropTypes.func,
+    value: PropTypes.string,
   };
 
 export default SearchForm;
