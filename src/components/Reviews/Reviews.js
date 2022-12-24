@@ -10,7 +10,14 @@ export const Reviews = () => {
     loadMovies('reviews', id).then(setMovieReviews);
   }, [id]);
 
-    return (
- <ul>{movieReviews.map((review) =><li><h2>Author:</h2>{review.author}<p>{review.content}</p></li> )}</ul>
+  return (
+    <ul>
+      {movieReviews.map(review => (
+        <li key={review.id}>
+          <h2>Author: {review.author}</h2>
+            <p>{review.content}</p>
+        </li>
+      ))}
+    </ul>
   );
 };

@@ -6,8 +6,8 @@ import { loadMovies } from 'service/API';
 import { MovieDetails } from 'pages/MovieDetails';
 import { Container, Header, Logo, Link } from './App.styled';
 import { GiFilmStrip } from 'react-icons/gi';
-import { Cast } from './Cast';
-import { Reviews } from './Reviews';
+import { Cast } from './Cast/Cast';
+import { Reviews } from './Reviews/Reviews';
 
 export const App = () => {
   const [movies, setMovies] = useState([]);

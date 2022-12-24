@@ -8,7 +8,6 @@ export const Cast = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    console.log(id);
     loadMovies('cast', id).then(setMovieCast);
   }, [id]);
 
