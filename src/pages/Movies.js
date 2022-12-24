@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { loadMovies } from 'service/API';
 import { Item, List, Image } from 'components/App.styled';
 import { SearchForm, Button, Label, Input } from './Searchbar.styled';
+import { ImSearch } from 'react-icons/im';
 
 export const Movies = () => {
   const [searchMovie, setSearchMovie] = useState('');
@@ -32,6 +33,7 @@ export const Movies = () => {
     <main>
       <SearchForm onSubmit={onSubmit}>
         <Button type="submit" className="button">
+          <ImSearch />
           <Label>Search</Label>
         </Button>
 
@@ -40,7 +42,7 @@ export const Movies = () => {
           type="text"
           autoComplete="off"
           autoFocus
-          placeholder="Search images and photos"
+          placeholder="Search movies"
           name="search"
         />
       </SearchForm>

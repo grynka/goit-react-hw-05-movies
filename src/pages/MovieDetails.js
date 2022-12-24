@@ -2,6 +2,7 @@ import { useParams, Outlet } from 'react-router-dom';
 import { loadMovies } from 'service/API';
 import { useState, useEffect } from 'react';
 import { Detail, Image, Link } from './MovieDetail.styled';
+import poster from '../image/default.jpg'
 
 export const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState({
@@ -22,7 +23,7 @@ export const MovieDetails = () => {
 
   const { poster_path, title, release_date, vote_average, overview, genres } =
     movieDetails;
-  const imgUrl = poster_path ? `${IMAGE_BASE_URL}/${poster_path}` : 'noPoster';
+  const imgUrl = poster_path ? `${IMAGE_BASE_URL}/${poster_path}` : poster;
   const releaseDate = release_date.slice(0, 4);
   const voteAverage = Math.floor(vote_average * 10);
   const genresStr = genres.map(genre => genre.name).join(', ');
