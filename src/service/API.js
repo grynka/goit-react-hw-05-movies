@@ -8,13 +8,6 @@ const TRAILER_MOVIE = 'https://api.themoviedb.org/3/movie/';
 const KEY = '2f44dbe234f7609a16da7327d83f3eb3';
 
 export async function loadMovies() {
-  const BASE_SEARH_PARAMS = {
-    key: KEY,
-  };
-
-  const response = await axios.get(TRENDING_URL, {
-    params: BASE_SEARH_PARAMS,
-  });
-
+  const response = await axios.get(`${GENRES_URL}?api_key=${KEY}`)
   return response.data;
 }
