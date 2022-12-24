@@ -2,7 +2,7 @@ import { Item, List, Image, Title } from 'components/App.styled';
 import { Link } from 'react-router-dom';
 import poster from '../image/default.jpg'
 
-export const Home = ({ movies }) => {
+const Home = ({ movies }) => {
   return (
     <main>
       <h1>Trending today</h1>
@@ -25,3 +25,5 @@ export const Home = ({ movies }) => {
     </main>
   );
 };
+
+export default Home

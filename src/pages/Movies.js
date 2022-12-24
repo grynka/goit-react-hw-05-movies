@@ -7,7 +7,7 @@ import { ImSearch } from 'react-icons/im';
 import poster from '../image/default.jpg'
 
 
-export const Movies = () => {
+ const Movies = () => {
   const [searchMovie, setSearchMovie] = useState('');
   const [movies, setMovies] = useState([]);
 
@@ -65,3 +65,5 @@ export const Movies = () => {
       </>
   );
 };
+
+export default Movies

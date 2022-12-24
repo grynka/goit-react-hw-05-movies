@@ -1,13 +1,17 @@
 import { Route, Routes, Outlet } from 'react-router-dom';
-import { Home } from 'pages/Home';
-import { Movies } from 'pages/Movies';
 import { useState, useEffect } from 'react';
 import { loadMovies } from 'service/API';
-import { MovieDetails } from 'pages/MovieDetails';
 import { Container, Header, Logo, Link } from './App.styled';
 import { GiFilmStrip } from 'react-icons/gi';
 import { Cast } from './Cast/Cast';
 import { Reviews } from './Reviews/Reviews';
+import { lazy } from 'react';
+
+const Home = lazy(() => import("pages/Home"))
+const MovieDetails = lazy(() => import("pages/MovieDetails"))
+const Movies = lazy(() => import("pages/Movies"))
+
+
 
 export const App = () => {
   const [movies, setMovies] = useState([]);

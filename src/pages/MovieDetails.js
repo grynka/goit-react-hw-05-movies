@@ -1,10 +1,11 @@
-import { useParams, Outlet } from 'react-router-dom';
+import { useParams, Outlet, useLocation } from 'react-router-dom';
 import { loadMovies } from 'service/API';
 import { useState, useEffect } from 'react';
 import { Detail, Image, Link } from './MovieDetail.styled';
+import { TbArrowBackUp } from 'react-icons/tb';
 import poster from '../image/default.jpg'
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState({
     backdrop_path: '',
     genres: [],
@@ -14,8 +15,10 @@ export const MovieDetails = () => {
     title: '',
     vote_average: '',
   });
+  const location = useLocation();
   const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w780';
   const { id } = useParams();
+  const backLink = location.state?.from ?? '/movies'
 
   useEffect(() => {
     loadMovies('card', id).then(setMovieDetails);
@@ -30,13 +33,17 @@ export const MovieDetails = () => {
 
   return (
     <main>
+    <Link to={backLink}>
+        <TbArrowBackUp />
+Go back
+        </Link>
       <Detail>
         <Image src={imgUrl} alt={title} />
         <div>
           <h2>
             {title}( {releaseDate} )
           </h2>
-          <p>User score: {voteAverage}</p>
+          <p>User score: {voteAverage}%</p>
           <h3>Overwiev</h3>
           <p>{overview}</p>
           <h3>Genres</h3>
@@ -54,3 +61,5 @@ export const MovieDetails = () => {
     </main>
   );
 };
+
+export default MovieDetails
