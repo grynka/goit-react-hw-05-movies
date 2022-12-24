@@ -1,49 +1,36 @@
 import { useState, useEffect } from 'react';
 import { loadMovies } from 'service/API';
-import { SearchForm, Button, Label, Input } from './Movies.styled';
-import { ImSearch } from 'react-icons/im';
+import { useSearchParams } from 'react-router-dom';
 import MovieList from 'components/MovieList/MovieList';
+import SearchForm  from 'components/SearchForm/SearchForm';
 
 
  const Movies = () => {
-  const [searchMovie, setSearchMovie] = useState('');
   const [movies, setMovies] = useState([]);
-
+  const [searchParams, setSearchParams] = useSearchParams();
+  const queryParam = searchParams.get('query') ?? '';
+  
   useEffect(() => {
-    if (searchMovie !== '') 
-{ loadMovies('search', searchMovie).then(setMovies);}
-  }, [searchMovie]);
+    if (queryParam !== '') 
+{ loadMovies('search', queryParam).then(setMovies);}
+  }, [queryParam]);
 
-  const onSubmit = event => {
-    event.preventDefault();
-    const input = event.target.elements.search;
-    const value = input.value.trim();
+  function onSubmit(e) {
+    e.preventDefault();
+    const input = e.target.elements.query;
+    let { value } = input;
 
-    if (value === '') {
-      alert.error(`You didn't enter anything!`);
+    if (!value) {
+      alert('Enter the name of the movie, for a correct search!');
       return;
     }
 
-    setSearchMovie(value);
-  };
+    setSearchParams({ query: value});
+  }
 
   return (
     <>
-      <SearchForm onSubmit={onSubmit}>
-        <Button type="submit" className="button">
-          <ImSearch />
-          <Label>Search</Label>
-        </Button>
-
-        <Input
-          className="input"
-          type="text"
-          autoComplete="off"
-          autoFocus
-          placeholder="Search movies"
-          name="search"
-        />
-      </SearchForm>
+      <SearchForm onSubmit={onSubmit}/>
       <MovieList movies={movies} /> 
       </>
   );

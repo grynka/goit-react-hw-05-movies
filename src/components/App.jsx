@@ -1,4 +1,4 @@
-import { Route, Routes, Outlet } from 'react-router-dom';
+import { Route, Routes, Outlet, Navigate  } from 'react-router-dom';
 import { Container, Header, Logo, Link } from './App.styled';
 import { GiFilmStrip } from 'react-icons/gi';
 import { Cast } from './Cast/Cast';
@@ -36,6 +36,8 @@ export const App = () => {
             <Route path="cast" element={<Cast />} />
             <Route path="reviews" element={<Reviews />} />
           </Route>
+          <Route path="*" element={<Navigate to="/" />} />
+
         </Routes>
         </Suspense>
 
