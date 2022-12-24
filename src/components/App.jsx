@@ -1,9 +1,12 @@
-import { SharedLayout } from "./SharedLayout";
 import { Route, Routes } from "react-router-dom";
 import { Home } from "pages/Home";
 import { Movies } from "pages/Movies";
 import { useState, useEffect } from "react";
 import { loadMovies } from "service/API";
+import { MovieDetails } from "pages/MovieDetails";
+import { Outlet } from "react-router-dom";
+import { Container, Header, Logo, Link } from "./SharedLayout.styled";
+import { GiFilmStrip } from 'react-icons/gi';
 
   
 export const App = () => {
@@ -38,13 +41,25 @@ useEffect(() => {
 
 
   return (
-    
-    <div>
+        <div>
+         <Container>
+      <Header>
+        <Logo>
+          <GiFilmStrip />
+Moovie        </Logo>
+        <nav>
+          <Link to="/" end>
+            Home
+          </Link>
+          <Link to="/movies">Movies</Link>
+        </nav>
+      </Header>
+      <Outlet />
+    </Container>
     <Routes>
-      <Route path="/" element={<SharedLayout />}>
-        <Route index element={<Home movies={movies}  />} />
-        <Route path="movies" element={<Movies onSubmit={onSubmit}/>} />
-      </Route>
+         <Route path="/" element={<Home movies={movies}  />} />
+        <Route path="/movies" element={<Movies onSubmit={onSubmit}/>} />
+      <Route path="/movies/:id" element={<MovieDetails />} />
     </Routes></div>
   );
 };
