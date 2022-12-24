@@ -59,7 +59,7 @@ Moovie        </Logo>
     <Routes>
          <Route path="/" element={<Home movies={movies}  />} />
         <Route path="/movies" element={<Movies onSubmit={onSubmit}/>} />
-      <Route path="/movies/:id" element={<MovieDetails />} />
+        <Route path="/movies/:id" element={<MovieDetails />} />
     </Routes></div>
   );
 };

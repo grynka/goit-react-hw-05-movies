@@ -1,14 +1,23 @@
 import { useParams } from 'react-router-dom';
 import { loadMovies } from 'service/API';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const MovieDetails = () => {
-const [movieDetails, setMovieDetails] = useState(null);
+  const [movieDetails, setMovieDetails] = useState(null);
   const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w780';
   const { id } = useParams();
-  const movie = loadMovies('card', id);
+
+  useEffect(() => {
+    const fetchData = async () => {
+    const res = await loadMovies('card', id);
+    setMovieDetails(res)
+      };
+  
+    fetchData()
+  })
+
   const { poster_path, title, release_date, vote_average, overview, genres } =
-    movie;
+  movieDetails;
   const imgUrl = poster_path ? `${IMAGE_BASE_URL}/${poster_path}` : 'noPoster';
   const releaseDate = release_date.slice(0, 4);
   const voteAverage = Math.floor(vote_average * 10);
