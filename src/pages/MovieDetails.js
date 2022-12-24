@@ -1,30 +1,32 @@
-import { useParams } from "react-router-dom";
-import { loadMovies } from "service/API";
+import { useParams } from 'react-router-dom';
+import { loadMovies } from 'service/API';
+import { useState } from 'react';
 
 export const MovieDetails = () => {
-    const { id } = useParams();
-    const movie = loadMovies('card', id);
-    if (movie) {
-        console.log(movie)
-    }
+const [movieDetails, setMovieDetails] = useState(null);
+  const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w780';
+  const { id } = useParams();
+  const movie = loadMovies('card', id);
+  const { poster_path, title, release_date, vote_average, overview, genres } =
+    movie;
+  const imgUrl = poster_path ? `${IMAGE_BASE_URL}/${poster_path}` : 'noPoster';
+  const releaseDate = release_date.slice(0, 4);
+  const voteAverage = Math.floor(vote_average * 10);
+  const genresStr = genres.map(genre => genre.name).join(' ');
 
-    return (
-      <main>
-        <img src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`} alt="" />
-        <div>
-          <h2>
-            {movie.title}
-            {}
-          </h2>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Doloribus
-            sunt excepturi nesciunt iusto dignissimos assumenda ab quae cupiditate
-            a, sed reprehenderit? Deleniti optio quasi, amet natus reiciendis
-            atque fuga dolore? Lorem, ipsum dolor sit amet consectetur adipisicing
-            elit. Impedit suscipit quisquam incidunt commodi fugiat aliquam
-            praesentium ipsum quos unde voluptatum?
-          </p>
-        </div>
-      </main>
-    );
-  };
+  return (
+    <main>
+      <img src={imgUrl} alt="" />
+      <div>
+        <h2>
+          {title}( {releaseDate} )
+        </h2>
+        <p>User score: {voteAverage}</p>
+        <h3>Overwiev</h3>
+        <p>{overview}</p>
+        <h3>Genres</h3>
+        <p>{genresStr}</p>
+      </div>
+    </main>
+  );
+};

@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { loadMovies } from "service/API";
 import { MovieDetails } from "pages/MovieDetails";
 import { Outlet } from "react-router-dom";
-import { Container, Header, Logo, Link } from "./SharedLayout.styled";
+import { Container, Header, Logo, Link } from "./App.styled";
 import { GiFilmStrip } from 'react-icons/gi';
 
   
