@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { loadMovies } from 'service/API';
 import { Item, List, Image } from 'components/App.styled';
-import { SearchForm, Button, Label, Input, Title } from './Searchbar.styled';
+import { SearchForm, Button, Label, Input, Title } from './Movies.styled';
 import { ImSearch } from 'react-icons/im';
 import poster from '../image/default.jpg'
 
@@ -10,6 +10,7 @@ import poster from '../image/default.jpg'
  const Movies = () => {
   const [searchMovie, setSearchMovie] = useState('');
   const [movies, setMovies] = useState([]);
+  const location = useLocation()
 
   useEffect(() => {
     if (searchMovie !== '') 
@@ -49,7 +50,7 @@ import poster from '../image/default.jpg'
       <List>
         {movies.map(movie => (
           <Item key={movie.id}>
-            <Link to={`/movies/${movie.id}`}>
+            <Link to={`/movies/${movie.id}`} state={ {from: location} }>
               <Image
                 src={ movie.backdrop_path ? `https://image.tmdb.org/t/p/w780${movie.backdrop_path}` : poster}
                 alt={movie.title}

@@ -16,6 +16,7 @@ const MovieDetails = () => {
     vote_average: '',
   });
   const location = useLocation();
+  console.log(location.state);
   const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w780';
   const { id } = useParams();
   const backLink = location.state?.from ?? '/movies'
