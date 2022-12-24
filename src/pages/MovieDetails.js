@@ -9,7 +9,7 @@ export const MovieDetails = () => {
 
   useEffect(() => {
     loadMovies('card', id).then(setMovieDetails)
-  }, [])
+  }, [id])
 
   const { poster_path, title, release_date, vote_average, overview, genres } =
   movieDetails;
