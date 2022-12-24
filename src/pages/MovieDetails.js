@@ -1,7 +1,7 @@
-import { useParams, Link, Outlet } from 'react-router-dom';
+import { useParams, Outlet } from 'react-router-dom';
 import { loadMovies } from 'service/API';
 import { useState, useEffect } from 'react';
-import { Detail, Image } from './MovieDetail.styled';
+import { Detail, Image, Link } from './MovieDetail.styled';
 
 export const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState({
