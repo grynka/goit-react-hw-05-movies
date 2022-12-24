@@ -1,6 +1,8 @@
 import { SearchForms, Button, Label, Input } from './SearchForm.styled';
 import { ImSearch } from 'react-icons/im';
 import { useState } from 'react';
+import PropTypes from 'prop-types';
+
 
 const SearchForm = ({ onSubmit }) => {
   const [query, setQuery] = useState('');
@@ -20,5 +22,9 @@ const SearchForm = ({ onSubmit }) => {
     </SearchForms>
   );
 };
+
+SearchForm.propTypes = {
+    onSubmit: PropTypes.func,
+  };
 
 export default SearchForm;

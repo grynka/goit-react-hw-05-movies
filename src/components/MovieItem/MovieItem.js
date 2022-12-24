@@ -1,6 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import { Item, Image, Title } from 'components/MovieItem/MovieItem.styled';
 import poster from '../../image/default.jpg';
+import PropTypes from 'prop-types';
+
 
 const MovieItem = ({ movie }) => {
   const { id, backdrop_path, title, release_date } = movie;
@@ -25,5 +27,12 @@ const MovieItem = ({ movie }) => {
     </Item>
   );
 };
+
+MovieItem.propTypes = {
+    id: PropTypes.number,
+    title: PropTypes.string,
+    poster_path: PropTypes.string,
+    release_date: PropTypes.string,
+  };
 
 export default MovieItem;

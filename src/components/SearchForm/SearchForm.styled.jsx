@@ -9,6 +9,8 @@ export const SearchForms = styled.form`
   background-color: #fff;
   border-radius: 3px;
   overflow: hidden;
+  margin: 0 auto;
+  border: 1px solid;
 `;
 
 export const Button = styled.button`
@@ -44,8 +46,9 @@ export const Input = styled.input`
   font-size: 20px;
   border: none;
   outline: none;
-  padding-left: 4px;
+  padding-left: 24px;
   padding-right: 4px;
+  height: 48px;
   ::placeholder {
     font: inherit;
     font-size: 18px;

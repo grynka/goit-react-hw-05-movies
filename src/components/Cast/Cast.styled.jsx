@@ -8,7 +8,6 @@ gap: 10px;
 padding: 0;`;
 
 export const Actor = styled.li`
-width: calc((100% - 108px) / 10);
-margin: 0 auto;`
+width: calc((100% - 108px) / 10);`
 
  

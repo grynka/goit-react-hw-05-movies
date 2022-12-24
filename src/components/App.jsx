@@ -1,47 +1,40 @@
-import { Route, Routes, Outlet, Navigate  } from 'react-router-dom';
-import { Container, Header, Logo, Link } from './App.styled';
+import { Route, Routes, Outlet, Navigate } from 'react-router-dom';
+import { Container, Header, Logo } from './App.styled';
+import NavBar from './NavBar/NavBar';
 import { GiFilmStrip } from 'react-icons/gi';
 import { Cast } from './Cast/Cast';
 import { Reviews } from './Reviews/Reviews';
 import { lazy } from 'react';
 import { Suspense } from 'react';
 
-const Home = lazy(() => import('pages/Home'));
-const MovieDetails = lazy(() => import('pages/MovieDetails'));
-const Movies = lazy(() => import('pages/Movies'));
+const Home = lazy(() => import('pages/Home/Home'));
+const MovieDetails = lazy(() => import('pages/MovieDetail/MovieDetails'));
+const Movies = lazy(() => import('pages/Movies/Movies'));
 
 export const App = () => {
- 
   return (
-    <div>
-      <Container>
-        <Header>
-          <Logo>
-            <GiFilmStrip />
-            Moovie
-          </Logo>
-          <nav>
-            <Link to="/" end>
-              Home
-            </Link>
-            <Link to="/movies">Movies</Link>
-          </nav>
-        </Header>
+    <Container>
+      <Header>
+        <Logo>
+          <GiFilmStrip />
+          Moovie
+        </Logo>
+ <NavBar />
+      </Header>
+      <main>
         <Suspense fallback={null}>
-        <Outlet />
-             <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="movies" element={<Movies />} />
-          <Route path="/movies/:id" element={<MovieDetails />}>
-            <Route path="cast" element={<Cast />} />
-            <Route path="reviews" element={<Reviews />} />
-          </Route>
-          <Route path="*" element={<Navigate to="/" />} />
-
-        </Routes>
+          <Outlet />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="movies" element={<Movies />} />
+            <Route path="/movies/:id" element={<MovieDetails />}>
+              <Route path="cast" element={<Cast />} />
+              <Route path="reviews" element={<Reviews />} />
+            </Route>
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
         </Suspense>
-
-      </Container>
-    </div>
+      </main>
+    </Container>
   );
 };

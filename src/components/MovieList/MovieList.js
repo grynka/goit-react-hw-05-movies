@@ -1,5 +1,7 @@
 import MovieItem from 'components/MovieItem/MovieItem';
 import { List } from './MovieList.styled';
+import PropTypes from 'prop-types';
+
 
 const MovieList = ({ movies }) => {
   return (
@@ -11,5 +13,9 @@ const MovieList = ({ movies }) => {
   );
 };
 
+MovieList.ptopTypes = {
+    movies: PropTypes.array,
+  };
+  
 export default MovieList;
 

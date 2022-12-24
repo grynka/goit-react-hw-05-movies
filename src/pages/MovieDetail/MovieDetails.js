@@ -3,7 +3,7 @@ import { loadMovies } from 'service/API';
 import { useState, useEffect } from 'react';
 import { Detail, Image, Link } from './MovieDetail.styled';
 import { TbArrowBackUp } from 'react-icons/tb';
-import poster from '../image/default.jpg'
+import poster from '../../image/default.jpg'
 
 const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState({
@@ -16,10 +16,9 @@ const MovieDetails = () => {
     vote_average: '',
   });
   const location = useLocation();
-  console.log(location.state);
   const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w780';
   const { id } = useParams();
-  const backLink = location.state?.from ?? '/movies'
+  const backLink = location.state?.from ?? '/'
 
   useEffect(() => {
     loadMovies('card', id).then(setMovieDetails);
@@ -30,10 +29,10 @@ const MovieDetails = () => {
   const imgUrl = poster_path ? `${IMAGE_BASE_URL}/${poster_path}` : poster;
   const releaseDate = release_date.slice(0, 4);
   const voteAverage = Math.floor(vote_average * 10);
-  const genresStr = genres.map(genre => genre.name).join(', ');
+  const genresStr = genres.map(genre => genre.name).join(' ');
 
   return (
-    <main>
+    <>
     <Link to={backLink}>
         <TbArrowBackUp />
 Go back
@@ -42,7 +41,7 @@ Go back
         <Image src={imgUrl} alt={title} />
         <div>
           <h2>
-            {title}( {releaseDate} )
+            {title}( {releaseDate ? releaseDate : "N/A"} )
           </h2>
           <p>User score: {voteAverage}%</p>
           <h3>Overwiev</h3>
@@ -59,7 +58,7 @@ Go back
         Review
       </Link>
       <Outlet />
-    </main>
+      </>
   );
 };
 
