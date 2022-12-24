@@ -52,4 +52,8 @@ export const Input = styled.input`
   }
 `;
 
-
+export const Title = styled.p`
+    font-size: 20px;
+    font-weight: 500;
+    padding: 12px 10px;
+    color: black;`;

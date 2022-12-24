@@ -1,5 +1,6 @@
 import { Item, List, Image, Title } from 'components/App.styled';
 import { Link } from 'react-router-dom';
+import poster from '../image/default.jpg'
 
 export const Home = ({ movies }) => {
   return (
@@ -10,7 +11,7 @@ export const Home = ({ movies }) => {
           <Item key={movie.id}>
             <Link to={`/movies/${movie.id}`}>
               <Image
-                src={`https://image.tmdb.org/t/p/w780${movie.backdrop_path}`}
+                src={ movie.backdrop_path ? `https://image.tmdb.org/t/p/w780${movie.backdrop_path}` : poster}
                 alt={movie.title}
                 width="300"
               ></Image>

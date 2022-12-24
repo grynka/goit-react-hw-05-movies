@@ -2,16 +2,18 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { loadMovies } from 'service/API';
 import { Item, List, Image } from 'components/App.styled';
-import { SearchForm, Button, Label, Input } from './Searchbar.styled';
+import { SearchForm, Button, Label, Input, Title } from './Searchbar.styled';
 import { ImSearch } from 'react-icons/im';
+import poster from '../image/default.jpg'
+
 
 export const Movies = () => {
   const [searchMovie, setSearchMovie] = useState('');
-  const [page, setPage] = useState(1);
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    loadMovies('search', searchMovie).then(setMovies);
+    if (searchMovie !== '') 
+{ loadMovies('search', searchMovie).then(setMovies);}
   }, [searchMovie]);
 
   const onSubmit = event => {
@@ -25,12 +27,10 @@ export const Movies = () => {
     }
 
     setSearchMovie(value);
-    setPage(1);
-    console.log(searchMovie, page);
   };
 
   return (
-    <main>
+    <>
       <SearchForm onSubmit={onSubmit}>
         <Button type="submit" className="button">
           <ImSearch />
@@ -51,15 +51,17 @@ export const Movies = () => {
           <Item key={movie.id}>
             <Link to={`/movies/${movie.id}`}>
               <Image
-                src={`https://image.tmdb.org/t/p/w780${movie.backdrop_path}`}
+                src={ movie.backdrop_path ? `https://image.tmdb.org/t/p/w780${movie.backdrop_path}` : poster}
                 alt={movie.title}
                 width="300"
               ></Image>
-              {movie.title} ({movie.release_date.slice(0, 4)})
+              <Title>
+                {movie.title} ({movie.release_date.slice(0, 4)})
+              </Title>
             </Link>
           </Item>
         ))}
       </List>
-    </main>
+      </>
   );
 };
