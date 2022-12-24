@@ -11,12 +11,16 @@ export const App = () => {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState(1);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const res = await loadMovies();
-      console.log(res)
+useEffect(() => {
+  const fetchData = async () => {
+  const res = await loadMovies();
+  setMovies(res)
     };
-},[])
+
+  fetchData()
+}, [])
+    
+
   const onSubmit = event => {
     event.preventDefault();
     const input = event.target.elements.search;
@@ -29,6 +33,7 @@ export const App = () => {
 
     setSearchMovie(value);
     setPage(1);
+    console.log(searchMovie, page)
   }
 
 
