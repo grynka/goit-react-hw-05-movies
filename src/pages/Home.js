@@ -2,6 +2,7 @@ import { Item, List, Image, Title } from 'components/App.styled';
 import { Link } from 'react-router-dom';
 import poster from '../image/default.jpg'
 
+
 const Home = ({ movies }) => {
   return (
     <main>
