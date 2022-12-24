@@ -8,13 +8,8 @@ export const MovieDetails = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    const fetchData = async () => {
-    const res = await loadMovies('card', id);
-    setMovieDetails(res)
-      };
-  
-    fetchData()
-  })
+    loadMovies('card', id).then(setMovieDetails)
+  }, [])
 
   const { poster_path, title, release_date, vote_average, overview, genres } =
   movieDetails;

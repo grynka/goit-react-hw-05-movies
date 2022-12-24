@@ -1,16 +1,18 @@
+import { Item, List, Image, Title } from "components/App.styled";
 import { Link } from "react-router-dom";
 
 export const Home = ({movies}) => {
+
     return (
             <main>
             <h1>Trending today</h1>
-        <ul>
+        <List>
           {movies.map((movie) => (
-            <li key={movie.id}>
-            <Link to={`${movie.id}`}>{movie.title}</Link>
-            </li>
+            <Item key={movie.id} >
+            <Link to={`/movies/${movie.id}`}><Image src={`https://image.tmdb.org/t/p/w780${movie.backdrop_path}`} alt={movie.title} width="300"></Image><Title>{movie.title} ({movie.release_date.slice(0, 4)})</Title></Link>
+            </Item>
           ))}
-        </ul>
+        </List>
       </main>
     );
   };
