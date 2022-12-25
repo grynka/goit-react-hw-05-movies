@@ -19,7 +19,7 @@ export const App = () => {
           <GiFilmStrip />
           Moovie
         </Logo>
- <NavBar />
+        <NavBar />
       </Header>
       <main>
         <Suspense fallback={null}>

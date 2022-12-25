@@ -3,7 +3,6 @@ import { ImSearch } from 'react-icons/im';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 
-
 const SearchForm = ({ onSubmit, value }) => {
   const [query, setQuery] = useState(value);
   return (
@@ -24,8 +23,8 @@ const SearchForm = ({ onSubmit, value }) => {
 };
 
 SearchForm.propTypes = {
-    onSubmit: PropTypes.func,
-    value: PropTypes.string,
-  };
+  onSubmit: PropTypes.func,
+  value: PropTypes.string,
+};
 
 export default SearchForm;

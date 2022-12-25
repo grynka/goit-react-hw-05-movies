@@ -3,7 +3,7 @@ import { loadMovies } from 'service/API';
 import { useState, useEffect } from 'react';
 import { Detail, Image, Link } from './MovieDetail.styled';
 import { TbArrowBackUp } from 'react-icons/tb';
-import poster from '../../image/default.jpg'
+import poster from '../../image/default.jpg';
 
 const MovieDetails = () => {
   const [movieDetails, setMovieDetails] = useState({
@@ -18,7 +18,7 @@ const MovieDetails = () => {
   const location = useLocation();
   const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w780';
   const { id } = useParams();
-  const backLink = location.state?.from ?? '/'
+  const backLink = location.state?.from ?? '/';
 
   useEffect(() => {
     loadMovies('card', id).then(setMovieDetails);
@@ -33,15 +33,15 @@ const MovieDetails = () => {
 
   return (
     <>
-    <Link to={backLink}>
+      <Link to={backLink}>
         <TbArrowBackUp />
-Go back
-        </Link>
+        Go back
+      </Link>
       <Detail>
         <Image src={imgUrl} alt={title} />
         <div>
           <h2>
-            {title}( {releaseDate ? releaseDate : "N/A"} )
+            {title}( {releaseDate ? releaseDate : 'N/A'} )
           </h2>
           <p>User score: {voteAverage}%</p>
           <h3>Overwiev</h3>
@@ -58,8 +58,8 @@ Go back
         Review
       </Link>
       <Outlet />
-      </>
+    </>
   );
 };
 
-export default MovieDetails
+export default MovieDetails;

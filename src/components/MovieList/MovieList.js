@@ -2,11 +2,10 @@ import MovieItem from 'components/MovieItem/MovieItem';
 import { List } from './MovieList.styled';
 import PropTypes from 'prop-types';
 
-
 const MovieList = ({ movies }) => {
   return (
     <List>
-      {movies.map((movie) => (
+      {movies.map(movie => (
         <MovieItem key={movie.id} movie={movie} />
       ))}
     </List>
@@ -14,8 +13,7 @@ const MovieList = ({ movies }) => {
 };
 
 MovieList.ptopTypes = {
-    movies: PropTypes.array,
-  };
-  
-export default MovieList;
+  movies: PropTypes.array,
+};
 
+export default MovieList;

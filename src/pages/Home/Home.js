@@ -19,10 +19,10 @@ const Home = () => {
 
   return (
     <>
-{loading && <Loader />}
-<MovieList movies={movies} /> 
+      {loading && <Loader />}
+      <MovieList movies={movies} />
     </>
   );
 };
 
-export default Home
+export default Home;

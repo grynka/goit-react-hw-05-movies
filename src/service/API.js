@@ -8,25 +8,31 @@ const CARD_MOVIE = 'https://api.themoviedb.org/3/movie/';
 const KEY = '2f44dbe234f7609a16da7327d83f3eb3';
 
 export async function loadMovies(URL, param) {
-  let url;
-  if (URL === 'search') {
-    url = SEARCH_FILMS_URL;
-    const response = await axios.get(`${url}?api_key=${KEY}&query=${param}`);
-    return response.data.results;
-  } else if (URL === 'card') {
-    url = CARD_MOVIE;
-    const response = await axios.get(`${url}${param}?api_key=${KEY}`);
-    return response.data;
-  } else if (URL === 'cast') {
-    url = CARD_MOVIE;
-    const response = await axios.get(`${url}${param}/credits?api_key=${KEY}`);
-    return response.data.cast;
-  } else if (URL === 'reviews') {
-    url = CARD_MOVIE;
-    const response = await axios.get(`${url}${param}/reviews?api_key=${KEY}`);
-    return response.data.results;
-  } else {
-    const response = await axios.get(`${TRENDING_URL}?api_key=${KEY}`);
-    return response.data.results;
+  switch (URL) {
+    case 'search': {
+      const response = await axios.get(
+        `${SEARCH_FILMS_URL}?api_key=${KEY}&query=${param}`
+      );
+      return response.data.results;
+    }
+    case 'card': {
+      const response = await axios.get(`${CARD_MOVIE}${param}?api_key=${KEY}`);
+      return response.data;
+    }
+    case 'cast': {
+      const response = await axios.get(
+        `${CARD_MOVIE}${param}/credits?api_key=${KEY}`
+      );
+      return response.data.cast;
+    }
+    case 'reviews': {
+      const response = await axios.get(
+        `${CARD_MOVIE}${param}/reviews?api_key=${KEY}`
+      );
+      return response.data.results;
+    }
+    default:
+      const response = await axios.get(`${TRENDING_URL}?api_key=${KEY}`);
+      return response.data.results;
   }
 }
